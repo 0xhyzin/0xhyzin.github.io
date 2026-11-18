@@ -7,65 +7,11 @@
     "Crypto",
     "Forensics"
   ],
-  "items": [
-    {
-      "id": "item-cert-1",
-      "kind": "certificate",
-      "title": "Junior Penetration Tester & Binary Fundamentals",
-      "organization": "Hack The Box / pwn.college",
-      "dateLabel": "2025",
-      "description": "إتمام مسارات أساسيات أمن المعلومات، تحليل الذاكرة، واستغلال ثغرات Stack & Heap.",
-      "imageUrl": "",
-      "linkUrl": "https://pwn.college",
-      "tags": [
-        "pwn.college",
-        "HTB",
-        "Security"
-      ],
-      "position": 1,
-      "updatedAt": 1794989718631
-    },
-    {
-      "id": "item-exp-1",
-      "kind": "experience",
-      "title": "CTF Player & Binary Security Researcher",
-      "organization": "Independent / Team Research",
-      "dateLabel": "2024 - Present",
-      "description": "تحليل الملفات التنفيذية ELF/PE، حل تحديات Pwn و Reverse Engineering، وبناء أدوات أتمتة للتحليل باستخدام Python و Go.",
-      "imageUrl": "",
-      "linkUrl": "",
-      "tags": [
-        "Reverse",
-        "Pwn",
-        "ELF",
-        "Automation"
-      ],
-      "position": 1,
-      "updatedAt": 1794989718631
-    },
-    {
-      "id": "item-proj-1",
-      "kind": "project",
-      "title": "HyTodo & Writeup Studio",
-      "organization": "Open Source Tooling",
-      "dateLabel": "2026",
-      "description": "منصة متكاملة لإدارة المذاكرة وكتابة ونشر المقالات الأمنية بواجهة Cyber-Terminal ودعم كامل للعربية والإنجليزية.",
-      "imageUrl": "",
-      "linkUrl": "",
-      "tags": [
-        "Go",
-        "React",
-        "Svelte",
-        "SQLite"
-      ],
-      "position": 1,
-      "updatedAt": 1794989718631
-    }
-  ],
+  "items": [],
   "profile": {
     "name": "Ahmed Essam",
-    "handle": "Hyzinx",
-    "title": "Security Researcher | Reverse Engineering & Binary Exploitation",
+    "handle": "Hyzin",
+    "title": "Security Researcher | Reverse Engineering \u0026 Binary Exploitation",
     "avatarUrl": "/uploads/media-bf0661104f28.jpeg",
     "bio": "باحث أمني ومهتم بالهندسة العكسية (Reverse Engineering) واكتشاف الثغرات (Pwn / Binary Exploitation). أشارك هنا ملخصات مذاكرتي، حلول تحديات CTF، وتقارير الـ Bug Bounty بأسلوب منظم.",
     "location": "Egypt",
